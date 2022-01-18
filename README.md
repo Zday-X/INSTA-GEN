@@ -10,6 +10,7 @@ A TOOL TO **AUTOMATE CREATING INSTAGRAM ACCOUNTS**
 ____________________________________________________________________________
 
 **DISCLAIMER: THIS TOOL IS BUILT PURELY FOR _EDUCATIONAL PURPOSES_ ONLY**
+
 **I AM NOT RESPONSIBLE FOR YOUR ACTIONS**
 ____________________________________________________________________________
 
