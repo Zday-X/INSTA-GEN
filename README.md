@@ -36,16 +36,26 @@ ____________________________________________________________________________
 # INSTALLATION INSTRUCTIONS [DEBIAN LINUX]
 ____________________________________________________________________________
 
+Clone the Repository
+```bash
 git clone https://github.com/Zday-X/INSTA-GEN.git
-
+```
+Change Directory
+```bash
 cd INSTA-GEN
-
+```
+Install The Dependencies
+```bash
 pip3 install -r requirements.txt
-
+```
+Make It Executable 
+```bash
 chmod +x inst-gen.py
-
+```
+Run The File
+```bash
 ./inst-gen.py
-
+```
 ____________________________________________________________________________
 ____________________________________________________________________________
 
