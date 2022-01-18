@@ -19,12 +19,12 @@ ____________________________________________________________________________
 
 ![image](https://user-images.githubusercontent.com/83881453/149974578-89254d68-8992-4f7b-8d48-17782fe224b7.png)
 
-## _**CREATE UNLIMITED ACCOUNTS**_
+### _**CREATE UNLIMITED ACCOUNTS**_
 
 ![image](https://user-images.githubusercontent.com/83881453/149974059-fdaf20b3-7f3b-4baa-9176-d2efce3ef44c.png)
 
 
-## _AUTOMATE EMAIL VERIFICATION_
+### _AUTOMATE EMAIL VERIFICATION_
 
 ![image](https://user-images.githubusercontent.com/83881453/149974406-774faad5-cf73-4ca1-bf78-b89aaeb9a64c.png)
 
