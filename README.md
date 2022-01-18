@@ -29,6 +29,6 @@ ____________________________________________________________________________
 ![image](https://user-images.githubusercontent.com/83881453/149974406-774faad5-cf73-4ca1-bf78-b89aaeb9a64c.png)
 
 
-
+**NOTE: CREDENTIALS Of The Generated Accounts Will Be Stored In a File Called "cred.txt"**
 
 _ENJOY ;)_
