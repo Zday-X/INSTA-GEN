@@ -31,4 +31,19 @@ ____________________________________________________________________________
 
 **NOTE: CREDENTIALS Of The Generated Accounts Will Be Stored In a File Called "cred.txt"**
 
+
+____________________________________________________________________________
+# INSTALLATION INSTRUCTIONS [DEBIAN LINUX]
+____________________________________________________________________________
+
+git clone https://github.com/Zday-X/INSTA-GEN.git
+cd INSTA-GEN
+pip3 install -r requirements.txt
+chmod +x inst-gen.py
+./inst-gen.py
+
+____________________________________________________________________________
+____________________________________________________________________________
+
+
 _ENJOY ;)_
