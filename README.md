@@ -17,8 +17,6 @@ ____________________________________________________________________________
 
 
 
-![image](https://user-images.githubusercontent.com/83881453/149974578-89254d68-8992-4f7b-8d48-17782fe224b7.png)
-
 #### _**CREATE UNLIMITED ACCOUNTS**_
 
 ![show1](https://user-images.githubusercontent.com/83881453/163457091-c6e799ca-f353-49b8-9e18-1a71bf19a579.png)
