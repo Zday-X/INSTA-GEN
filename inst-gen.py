@@ -6,10 +6,12 @@ from random_username.generate import generate_username
 import os
 import random
 import time
+import argparse
 import requests
 from password_generator import PasswordGenerator
 from datetime import datetime
 import platform
+from gooey import Gooey, GooeyParser
 
 link = "https://www.instagram.com/"  # used to get the csrf token
 create_url = "https://www.instagram.com/accounts/web_create_ajax/attempt/"
@@ -40,7 +42,7 @@ def _insta_gen(
             "first_name": first_name,
             "opt_into_one_tap": "false",
             "client_id": mid,
-            "seamless_login_enabled": "1",
+            "seamless_login_enabled": "0",
         }
 
         s.post(
@@ -152,6 +154,7 @@ def _create_acc():
     global account
     global acc_inst
 
+    print("STARTED TO CREATE AN ACCOUNT\n")
     while True:
         try:
             global acc_id
@@ -189,127 +192,101 @@ def _create_acc():
             continue
 
 
-instagen = """
-██╗███╗   ██╗███████╗████████╗ █████╗        ██████╗ ███████╗███╗   ██╗
-██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗      ██╔════╝ ██╔════╝████╗  ██║
-██║██╔██╗ ██║███████╗   ██║   ███████║█████╗██║  ███╗█████╗  ██╔██╗ ██║
-██║██║╚██╗██║╚════██║   ██║   ██╔══██║╚════╝██║   ██║██╔══╝  ██║╚██╗██║
-██║██║ ╚████║███████║   ██║   ██║  ██║      ╚██████╔╝███████╗██║ ╚████║
-╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝       ╚═════╝ ╚══════╝╚═╝  ╚═══╝
-"""
-author = "💀 ZDAY-X 💀"
-disclaimer = "This Tool Was Purely Built For Education Purposes Only"
-os.system("cls")  # Change this to [clear] to work in linux
-sys.stdout.write(instagen)
+prog_descr = "A Tool Used To Automate Creating Instagram Accounts"
 
-# Make this one as not equals too in future
-if platform.system().lower() == "windows":
-    print(f"\t\t\t\t\t\t\t\t\t{bcolors.HEADER} DEV :-", end="")
-    sys.stdout.write(f"{bcolors.FAIL }{author}")
 
-    for i in range(3):
-        print()
-    time.sleep(2)
+@Gooey(
+    menu=[
+        {
+            "name": "About",
+            "items": [
+                {
+                    "type": "AboutDialog",
+                    "menuTitle": "About",
+                    "name": "INST-GEN ",
+                    "description": "A Program To Automate Creating Instagram Accounts",
+                    "version": "v2.0.0",
+                    "copyright": "2022",
+                    "website": "https://github.com/Zday-X/INSTA-GEN",
+                    "developer": "ZDay-X",
+                    "license": "MIT",
+                }
+            ],
+        },
+        {
+            "name": "Informations/Warnings",
+            "items": [
+                {
+                    "type": "MessageDialog",
+                    "menuTitle": "About Abusing The Software",
+                    "message": "Guys, just because you have the power, dont abuse it :)",
+                    "caption": "Do not Abuse The Power!",
+                },
+                {
+                    "type": "MessageDialog",
+                    "menuTitle": "Warning About IP Banning",
+                    "message": "It is adviced not to create too many accounts continously to prevent IP-BANNING from instagram servers.\nThe recomended Accounts Creation Per day is 200.",
+                    "caption": "WARNING",
+                },
+                {
+                    "type": "MessageDialog",
+                    "menuTitle": "About Spamming",
+                    "message": "This software is created purely for Educational Purposes Only! That is to purely learn about how this tech/algorithm works and just playing with it to gain more knowledge.",
+                    "caption": "You had heard this many times, but its my duty to add it here :)",
+                },
+                {
+                    "type": "MessageDialog",
+                    "menuTitle": "About Contributing",
+                    "message": "You can Help me along with others in the community to add more features to this software!!!\nYou can find the github link in the about section or in the information/warning section.",
+                    "caption": "The door is always open!",
+                },
+                {
+                    "type": "Link",
+                    "menuTitle": "I Want To Contribute This Software.",
+                    "url": "https://github.com/Zday-X/INSTA-GEN",
+                },
+            ],
+        },
+    ],
+    program_name="INSTA-GEN",
+    program_description=prog_descr,
+    disable_stop_button=True,
+    monospace_display=False,
+    navigation="Tabbed",
+    tabbed_groups=True,
+    image_dir=".",
+)
+def main():
+    parser = GooeyParser(
+        description="Automate Creating Instagram Accounts!",
+    )
 
-    for word in disclaimer.split():
-        print(f"{bcolors.WARNING} {word}", end="")
-        time.sleep(0.25)
-    for i in range(4):
-        print()
-    spin_load = ["|", "/", "-", "\\", "|"]
+    parser = GooeyParser(description="Automate Creating Instagram Accounts!")
 
-    animation = "|/-\\"
-    idx = 0
-    i = 0
-    end_ = 30
-    while i <= end_:
-        print(
-            bcolors.OKCYAN + "Initializing " + animation[idx % len(animation)], end="\r"
+    automate = parser.add_argument_group("Automate")
+    automate.add_argument(
+        "--Accounts",
+        action="store",
+        help="Number Of Instagram Accounts You Want To Generate",
+    )
+
+    args = parser.parse_args()
+    print(f"AUTO GENERATING [ {args.Accounts} ] ACCOUNTS!\n ")
+    print("[Sit Back And Relax..This may take some time]\n")
+    for i in range(1, int(args.Accounts) + 1):
+        _create_acc()
+        email_acc_a = mail_addre
+        print(f"Using Email: {email_acc_a}")
+        _insta_gen(
+            email_acc_a,
+            user_name=generate_username(1)[0] + str(random.randint(1, 1000)),
+            first_name=generate_username(1)[0],
+            password=str(pwo.generate()) + str(random.randint(1, 999999999999)),
         )
-        idx += 1
-        time.sleep(0.1)
-        i += 1
-    os.system("cls")  # Change to clear
+        print(f"------\n[✔️] {i} ACCOUNT GENERATED .\n------\n")
 
-    while 1:
-        print(f"{bcolors.OKGREEN} {instagen}")
-        print(
-            bcolors.OKBLUE
-            + """
-        [1] Create Instagram Accounts
-        """
-        )
-        des_1 = input(bcolors.HEADER + ">>> ")
+    print("\n Account Details Are Stored In A File Named [cred.txt]")
 
-        if des_1.lower() == "1":
-            print(
-                """\n\nIT IS ADVICED TO NOT CREATE MORE THAN 15 ACCOUNT AT A TIME TO PREVENT IP BAN"""
-            )
-            print("However the choice is yours ;)\n\n\n")
-            print(f"{bcolors.ENDC}NUMBER OF ACCOUNTS TO CREATE: ", end=" ")
 
-            while 1:
-                try:
-                    number_of_accounts = int(input())
-                except:
-                    pass
-                finally:
-                    break
-            manual_creation = input(
-                f"{bcolors.WARNING}Do you want to manually enter account credentials? [y/n]: "
-            ).lower()
-
-            if manual_creation == "y":
-                print("USERNAME SHOULD BE LESS THAN 30 CHARS")
-                for i in range(1, number_of_accounts + 1):
-                    user_name_acc = input(f"UserName For Acc [{i}]: ")
-                    first_name_acc = input(f"FirstName For Acc [{i}]: ")
-                    password_acc = input(f"Enter Password For Acc [{i}]: ")
-                    print()
-                    print("Generating Email And Verifying Account Hold On a Bit..")
-                    print()
-                    _create_acc()
-                    email_acc = mail_addre
-
-                    pray = _insta_gen(
-                        email_acc,
-                        user_name=user_name_acc,
-                        first_name=first_name_acc,
-                        password=password_acc,
-                    )
-                    print(f"{bcolors.OKBLUE}ACCOUNT GEN : PASS")
-                    print(f"{bcolors.OKGREEN} ")
-            elif manual_creation == "n":
-                print(
-                    f"\n{bcolors.OKCYAN}AUTO GENERATING {number_of_accounts} ACCOUNTS! [Sit Back And Relax..This may take some time]"
-                )
-                for i in range(1, number_of_accounts + 1):
-                    _create_acc()
-                    email_acc_a = mail_addre
-                    _insta_gen(
-                        email_acc_a,
-                        user_name=generate_username(1)[0]
-                        + str(random.randint(1, 1000)),
-                        first_name=generate_username(1)[0],
-                        password=str(pwo.generate())
-                        + str(random.randint(1, 999999999999)),
-                    )
-                    print(f"{bcolors.OKGREEN}[INFO] {i} ACCOUNT GENERATED .")
-            else:
-                print()
-                time.sleep(1)
-                print(f"{bcolors.FAIL}What the fuck do you just said? huh ? BYE!")
-                time.sleep(2)
-                sys.exit()
-            sys.exit()
-        else:
-            print("|ERROR | INVALID ENTRY :<, TRY AGAIN")
-            time.sleep(3)
-            os.system("cls")  # Change to clear
-            continue
-else:
-    print("You have to run this tool in linux :(")
-    for i in range(7, 1, -1):
-        print(f"Exiting The Application in {i}", end="\r")
-        time.sleep(1)
-    sys.exit()
+if __name__ == "__main__":
+    main()

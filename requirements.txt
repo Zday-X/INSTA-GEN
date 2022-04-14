@@ -1,3 +1,7 @@
-pymailtm==1.0.2
-random-username==1.0.2
-random-password-generator==2.2.0
+
+
+Gooey == 1.0.8.1
+pymailtm == 1.0.2
+random_password_generator == 2.2.0
+random_username == 1.0.2
+requests == 2.25.1
