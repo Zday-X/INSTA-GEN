@@ -31,28 +31,12 @@ ____________________________________________________________________________
 
 
 ____________________________________________________________________________
-# INSTALLATION INSTRUCTIONS [DEBIAN LINUX]
+# INSTALLATION INSTRUCTIONS [WINDOWS]
 ____________________________________________________________________________
 
 Clone the Repository
-```bash
-git clone https://github.com/Zday-X/INSTA-GEN.git
 ```
-Change Directory
-```bash
-cd INSTA-GEN
-```
-Install The Dependencies
-```bash
-pip3 install -r requirements.txt
-```
-Make It Executable 
-```bash
-chmod +x inst-gen.py
-```
-Run The File
-```bash
-./inst-gen.py
+Download The binary From the releases.
 ```
 ____________________________________________________________________________
 ____________________________________________________________________________
