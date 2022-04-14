@@ -1,4 +1,4 @@
-# INSTA-GEN
+# INSTA-GEN v2.0.0
 
 _**Developed By : ZDAY-X**_
 
