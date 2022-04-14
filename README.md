@@ -21,12 +21,12 @@ ____________________________________________________________________________
 
 #### _**CREATE UNLIMITED ACCOUNTS**_
 
-![image](https://user-images.githubusercontent.com/83881453/149974059-fdaf20b3-7f3b-4baa-9176-d2efce3ef44c.png)
+![show1](https://user-images.githubusercontent.com/83881453/163457091-c6e799ca-f353-49b8-9e18-1a71bf19a579.png)
 
 
 #### _AUTOMATE EMAIL VERIFICATION_
 
-![image](https://user-images.githubusercontent.com/83881453/149974406-774faad5-cf73-4ca1-bf78-b89aaeb9a64c.png)
+![show2](https://user-images.githubusercontent.com/83881453/163457108-60cc9df7-853a-4225-8802-b9c2c4e1e73f.png)
 
 
 **NOTE: CREDENTIALS Of The Generated Accounts Will Be Stored In a File Called "cred.txt"**
