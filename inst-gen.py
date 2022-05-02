@@ -1,5 +1,3 @@
-# Feel Free to READ :)
-
 from json import JSONDecodeError
 import sys
 import pymailtm
