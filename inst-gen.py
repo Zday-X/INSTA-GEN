@@ -1,3 +1,5 @@
+# Feel Free to READ :)
+
 from json import JSONDecodeError
 import sys
 import pymailtm
@@ -28,106 +30,116 @@ def _insta_gen(
     password=str(pwo.generate()) + str(random.randint(1, 999999999999)),
 ):
     time = int(datetime.now().timestamp())
-    with requests.Session() as s:
-        s.get(link)
-        csrf = s.cookies["csrftoken"]
-        mid = s.cookies["mid"]
 
-        payload_creation = {
-            "enc_password": f"#PWD_INSTAGRAM_BROWSER:0:{time}:{password}",
-            "email": email,
-            "username": user_name,
-            "first_name": first_name,
-            "opt_into_one_tap": "false",
-            "client_id": mid,
-            "seamless_login_enabled": "1",
-        }
+    try:
+        with requests.Session() as s:
+            s.get(link)
+            csrf = s.cookies["csrftoken"]
+            mid = s.cookies["mid"]
 
-        s.post(
-            create_url,
-            data=payload_creation,
-            headers={
-                "user-agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
-                "x-requested-with": "XMLHttpRequest",
-                "referer": "https://www.instagram.com/accounts/emailsignup/",
-                "x-csrftoken": csrf,
-            },
-        )
+            # Payload to initialize the account.
+            payload_creation = {
+                "enc_password": f"#PWD_INSTAGRAM_BROWSER:0:{time}:{password}",
+                "email": email,
+                "username": user_name,
+                "first_name": first_name,
+                "opt_into_one_tap": "false",
+                "client_id": mid,
+                "seamless_login_enabled": "1",
+            }
 
-        payload_verify_mail = {"device_id": mid, "email": email}
+            s.post(
+                create_url,
+                data=payload_creation,
+                headers={
+                    "user-agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
+                    "x-requested-with": "XMLHttpRequest",
+                    "referer": "https://www.instagram.com/accounts/emailsignup/",
+                    "x-csrftoken": csrf,
+                },
+            )
 
-        s.post(
-            verify_mail,
-            data=payload_verify_mail,
-            headers={
-                "user-agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
-                "x-requested-with": "XMLHttpRequest",
-                "referer": "https://www.instagram.com/",
-                "x-csrftoken": csrf,
-            },
-        )
-        import time
+            payload_verify_mail = {"device_id": mid, "email": email}
 
-        while 1:
-            time.sleep(1.5)
-            messages = acc_inst.get_messages()
-            try:
-                inst_mail = messages[0]
-                verification_code = inst_mail.subject[:6]
-                break
-            except:
-                pass
-        payload_check_code = {
-            "code": verification_code,
-            "device_id": mid,
-            "email": email,
-        }
+            # Payload to request OTP to the temporary mail.
+            s.post(
+                verify_mail,
+                data=payload_verify_mail,
+                headers={
+                    "user-agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
+                    "x-requested-with": "XMLHttpRequest",
+                    "referer": "https://www.instagram.com/",
+                    "x-csrftoken": csrf,
+                },
+            )
+            import time
 
-        resp_code = s.post(
-            check_confo,
-            data=payload_check_code,
-            headers={
-                "user-agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
-                "x-requested-with": "XMLHttpRequest",
-                "referer": "https://www.instagram.com/",
-                "x-csrftoken": csrf,
-            },
-        )
+            # Constantly Check for incomming email from instgram server in our mail inbox and get otp.
+            while 1:
+                time.sleep(1.5)
+                messages = acc_inst.get_messages()
+                try:
+                    inst_mail = messages[0]
+                    verification_code = inst_mail.subject[:6]
+                    break
+                except:
+                    pass
+            # Payload to verify OTP with instagram servers.
+            payload_check_code = {
+                "code": verification_code,
+                "device_id": mid,
+                "email": email,
+            }
 
-        resp_json = resp_code.json()
-        signup_code = resp_json["signup_code"]
+            resp_code = s.post(
+                check_confo,
+                data=payload_check_code,
+                headers={
+                    "user-agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
+                    "x-requested-with": "XMLHttpRequest",
+                    "referer": "https://www.instagram.com/",
+                    "x-csrftoken": csrf,
+                },
+            )
 
-        create_final_payload = {
-            "enc_password": f"#PWD_INSTAGRAM_BROWSER:0:{time}:{password}",
-            "email": email,
-            "username": user_name,
-            "first_name": first_name,
-            "month": "1",
-            "day": "18",
-            "year": "1972",
-            "opt_into_one_tap": "false",
-            "client_id": mid,
-            "seamless_login_enabled": "1",
-            "tos_version": "row",
-            "force_sign_up_code": signup_code,
-        }
+            resp_json = resp_code.json()
+            signup_code = resp_json["signup_code"]
 
-        s.post(
-            final_create_url,
-            data=create_final_payload,
-            headers={
-                "user-agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
-                "x-requested-with": "XMLHttpRequest",
-                "referer": "https://www.instagram.com/accounts/emailsignup/",
-                "x-csrftoken": csrf,
-            },
-        )
+            # Final payload to finalize creating the account.
+            create_final_payload = {
+                "enc_password": f"#PWD_INSTAGRAM_BROWSER:0:{time}:{password}",
+                "email": email,
+                "username": user_name,
+                "first_name": first_name,
+                "month": "1",
+                "day": "18",
+                "year": "1972",
+                "opt_into_one_tap": "false",
+                "client_id": mid,
+                "seamless_login_enabled": "1",
+                "tos_version": "row",
+                "force_sign_up_code": signup_code,
+            }
 
-        with open("cred.txt", "a") as f:
-            f.write("\n\n")
-            f.write(f"EMAIL: {email}\n")
-            f.write(f"USERNAME: {user_name}\n")
-            f.write(f"PASSWORD: {password}\n")
+            s.post(
+                final_create_url,
+                data=create_final_payload,
+                headers={
+                    "user-agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
+                    "x-requested-with": "XMLHttpRequest",
+                    "referer": "https://www.instagram.com/accounts/emailsignup/",
+                    "x-csrftoken": csrf,
+                },
+            )
+
+            with open("cred.txt", "a") as f:
+                f.write("\n\n")
+                f.write(f"EMAIL: {email}\n")
+                f.write(f"USERNAME: {user_name}\n")
+                f.write(f"PASSWORD: {password}\n")
+    except KeyError:
+        print("ERROR: UNABLE TO FETCH CSRF_TOKEN")
+        print("PROBABLE CAUSE: IP BANNING")
 
 
 class bcolors:
@@ -203,6 +215,7 @@ os.system("cls")  # Change this to [clear] to work in linux
 sys.stdout.write(instagen)
 
 # Make this one as not equals too in future
+# Change this one to != to run in linux :)
 if platform.system().lower() == "windows":
     print(f"\t\t\t\t\t\t\t\t\t{bcolors.HEADER} DEV :-", end="")
     sys.stdout.write(f"{bcolors.FAIL }{author}")
