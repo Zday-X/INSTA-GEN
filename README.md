@@ -1,11 +1,11 @@
-# INSTA-GEN V2.0.1
+# INSTA-GEN [Not Assigned]
 
 _**Developed By : ZDAY-X**_
 
 
 
 
-A TOOL TO **AUTOMATE CREATING INSTAGRAM ACCOUNTS**
+A TOOL TO **AUTOMATE CREATING INSTAGRAM ACCOUNTS AND MUCH MORE**
 
 ____________________________________________________________________________
 
@@ -13,53 +13,15 @@ ____________________________________________________________________________
 
 **I AM NOT RESPONSIBLE FOR YOUR ACTIONS**
 
-TIP: Check out *GUI BRANCH* to see source code of the Gui Version of this software.
+NOTE: *This Branch Is Still In Development*
 ____________________________________________________________________________
 
 
+![Screenshot 2022-06-02 011430](https://user-images.githubusercontent.com/83881453/171489092-81569409-b7a9-4945-b6a0-209cd53241d5.png)
 
+### Its Not Just a Instagram-Account-Gen...
 
-![image](https://user-images.githubusercontent.com/83881453/149974578-89254d68-8992-4f7b-8d48-17782fe224b7.png)
-
-#### _**CREATE UNLIMITED ACCOUNTS**_
-
-![image](https://user-images.githubusercontent.com/83881453/149974059-fdaf20b3-7f3b-4baa-9176-d2efce3ef44c.png)
-
-
-#### _AUTOMATE EMAIL VERIFICATION_
-
-![image](https://user-images.githubusercontent.com/83881453/149974406-774faad5-cf73-4ca1-bf78-b89aaeb9a64c.png)
-
-
-**NOTE: CREDENTIALS Of The Generated Accounts Will Be Stored In a File Called "cred.txt"**
-
-
-____________________________________________________________________________
-# INSTALLATION INSTRUCTIONS [DEBIAN LINUX]
-____________________________________________________________________________
-
-Clone the Repository
-```bash
-git clone https://github.com/Zday-X/INSTA-GEN.git
-```
-Change Directory
-```bash
-cd INSTA-GEN
-```
-Install The Dependencies
-```bash
-pip3 install -r requirements.txt
-```
-Make It Executable 
-```bash
-chmod +x inst-gen.py
-```
-Run The File
-```bash
-./inst-gen.py
-```
-____________________________________________________________________________
-____________________________________________________________________________
+![Screenshot 2022-06-02 011533](https://user-images.githubusercontent.com/83881453/171489098-7a96a6d4-a705-4b90-b6f8-ba36a0ed4908.png)
 
 
 
